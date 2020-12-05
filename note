@@ -1,0 +1,27 @@
+reguler_jobseekers_table
+
+php artisan make:migration create_premium_jobseekers_table
+php artisan make:migration create_admins_table
+php artisan make:migration create_testers_table
+php artisan make:migration create_jobseeker_tests_table
+php artisan make:migration create_tests_table
+php artisan make:migration create_questions_table
+php artisan make:migration create_answers_table
+php artisan make:migration create_selected_answers_table
+
+php artisan krlove:generate:model PremiumJobseeker
+php artisan krlove:generate:model RegularJobseeker
+php artisan krlove:generate:model Admin
+php artisan krlove:generate:model Tester
+php artisan krlove:generate:model JobseekerTest
+php artisan krlove:generate:model Test
+php artisan krlove:generate:model Question
+php artisan krlove:generate:model Answer
+php artisan krlove:generate:model SelectedAnswer
+
+php artisan krlove:generate:model Test
+php artisan krlove:generate:model QuestionDetail
+php artisan krlove:generate:model QuestionScore
+php artisan krlove:generate:model QuestionSubmit
+
+
