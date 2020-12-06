@@ -91,13 +91,28 @@
 
     if (Auth::user()->role==3) {
         $add = [
-            "href" => [
+            "href" =>   [
+                [
+                    "section_text" => "Info Loker",
+                    "section_icon" => "fa fa-briefcase",
+                    "section_list" => [
+                        ["href" => "admin.job-info.index", "text" => "Data Loker"],
+                    ]
+                ],
+                [
+                   "section_text" => "Soal",
+                   "section_icon" => "fa fa-file",
+                    "section_list" => [
+                        ["href" => "admin.test.index", "text" => "Latihan Soal"],
+//                        ["href" => "admin.question-detail.create", "text" => "Tambah Soalmu"]
+                  ]
+                ],
                 [
                     "section_text" => "Jadwal",
                     "section_icon" => "fa fa-calendar",
                     "section_list" => [
                         ["href" => "admin.interview.index", "text" => "Jadwal Interview"],
-                        ["href" => "admin.test.index", "text" => "Jadwal Tes"]
+ //                       ["href" => "admin.test.index", "text" => "Jadwal Tes"]
                     ]
                 ],
             ],

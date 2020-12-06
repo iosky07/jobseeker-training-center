@@ -3,7 +3,8 @@
         <div class="flex pb-4 -ml-3">
 {{--            @if(Auth::user()->role==1 or Auth::user()->role==2 )--}}
             @isset($data->href->create_new)
-            <a href="{{ $data->href->create_new }}" target="_blank" class="-ml- btn btn-primary shadow-none">
+{{--            <a href="{{ $data->href->create_new }}" target="_blank" class="-ml- btn btn-primary shadow-none">--}}
+            <a href="{{ $data->href->create_new }}" class="-ml- btn btn-primary shadow-none">
                 <span class="fas fa-plus"></span> {{ $data->href->create_new_text }}
             </a>
             @endif

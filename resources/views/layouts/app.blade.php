@@ -24,10 +24,11 @@
         <link rel="stylesheet" href="{{ asset('stisla/css/bootstrap-timepicker.min.css') }}">
         <link rel="stylesheet" href="{{asset('vendor/bootstrap-daterangepicker/daterangepicker.css')}}">
 
+
         <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css" media="all">
         <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css" media="all">
         <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all">
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="{{asset('js/swal.js')}}"></script>
         <livewire:styles />
 
         <!-- Scripts --> <script src="https://js.pusher.com/6.0/pusher.min.js"></script>

@@ -7,20 +7,24 @@
         </div>
 
         <div class="form-group col-span-6 sm:col-span-5">
-            <label for="name">{{__('Deadline')}}</label>
+            <label for="deadline">{{__('Deadline')}}</label>
             <input id="time" type="text" class="mt-1 block w-full form-control shadow-none datepicker"
                    wire:model="job.deadline" required/>
         </div>
 
         <div class="form-group col-span-6 sm:col-span-5">
-            <label for="name">{{__('Detail Info')}}</label>
-            <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"
-                   wire:model="job.detail_info" required/>
+            <label for="detail">{{__('Detail Info')}}</label>
+                <div class="col-sm-12 col-md-7"  >
+                    <textarea cols="70" rows="5" wire:model="job.detail_info" required></textarea>
+{{--                    <textarea type="text" input="description" id="summernote" class="form-control summernote" wire:model.debounce.500ms="job.detail_info" required></textarea>--}}
+                </div>
+{{--            <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"--}}
+{{--                   wire:model="job.detail_info" required/>--}}
         </div>
 
         <div class="form-group col-span-6 sm:col-span-5">
-            <label for="name">{{__('Link Info Loker')}}</label>
-            <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"
+            <label for="loker">{{__('Link Info Loker')}}</label>
+            <input type="text" class="mt-1 block w-full form-control shadow-none"
                    wire:model="job.link_info" required/>
         </div>
 
@@ -60,6 +64,7 @@
                 var data = document.getElementById('time').value;
             @this.set('job.deadline', data)
             })
+
             // $("#date").on("change.timepicker", () => {
             //     use24hours: true
             //     var data = document.getElementById('date').value;
@@ -78,6 +83,43 @@
             // @this.set('job.time', dataa)
             // })
         });
+        // document.addEventListener('livewire:load', function () {
+        // $("#summernote").on("change.summernote", () => {
+        //     var dataa = document.getElementById('summernote').value;
+        // @this.set('job.detail_info', dataa)
+        // })
+        // });
+        // $('.summernote').summernote({
+        //     tabsize: 2,
+        //     height: 200,
+        //     toolbar: [
+        //         ['style', ['style']],
+        //         ['font', ['bold', 'underline', 'clear']],
+        //         ['color', ['color']],
+        //         ['para', ['ul', 'ol', 'paragraph']],
+        //         ['table', ['table']],
+        //         ['insert', ['link', 'picture', 'video']],
+        //         ['view', ['fullscreen', 'codeview', 'help']]
+        //     ],
+        //     callbacks: {
+        //         onChange: function(contents, $editable) {
+        //         @this.set('job.detail_info', contents);
+        //         }
+        //     }
+        // });
+        //
+        // $('#message').summernote({
+        //     height: 200,
+        //     codemirror: {
+        //         theme: 'monokai'
+        //     },
+        //     callbacks: {
+        //         onChange: function(contents, $editable) {
+        //         @this.set('message', contents);
+        //         }
+        //     }
+        // });
+
         {{--        function Datepicker() {--}}
         {{--            $('#asdasd').datetimepicker({--}}
         {{--                format: 'YYYY-MM-DD H:mm'--}}

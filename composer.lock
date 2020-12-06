@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e7230d357c22442762367d4b168bd5c5",
+    "content-hash": "e0294add8c349c0f9732f5fdd0ebd2af",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1635,23 +1635,23 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.2.7",
+            "version": "v2.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "2bb227d3e678bfef0c31124cfb6491929c7b65d3"
+                "reference": "781a1250dc8eab9121fd856ff0b6efca8c32756f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/2bb227d3e678bfef0c31124cfb6491929c7b65d3",
-                "reference": "2bb227d3e678bfef0c31124cfb6491929c7b65d3",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/781a1250dc8eab9121fd856ff0b6efca8c32756f",
+                "reference": "781a1250dc8eab9121fd856ff0b6efca8c32756f",
                 "shasum": ""
             },
             "require": {
                 "illuminate/database": "^7.0|^8.0",
                 "illuminate/support": "^7.0|^8.0",
                 "illuminate/validation": "^7.0|^8.0",
-                "php": "^7.2.5",
+                "php": "^7.2.5|^8.0",
                 "symfony/http-kernel": "^5.0"
             },
             "require-dev": {
@@ -1675,6 +1675,9 @@
                 }
             },
             "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
                 "psr-4": {
                     "Livewire\\": "src/"
                 }
@@ -1690,7 +1693,13 @@
                 }
             ],
             "description": "A front-end framework for Laravel.",
-            "time": "2020-09-24T16:59:01+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/calebporzio",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-12-01T20:51:29+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -5488,6 +5497,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {
