@@ -122,4 +122,8 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Tester');
     }
+    public function questionSubmit()
+    {
+        return $this->hasOne('App\Models\QuestionSubmit');
+    }
 }

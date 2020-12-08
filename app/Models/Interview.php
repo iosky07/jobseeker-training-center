@@ -30,16 +30,22 @@ class Interview extends Model
         return $this->belongsTo('App\Models\Tester');
     }
 
+//    public static function search($query)
+//    {
+////        return empty($query) ? static::query()->whereVerification('yes')->whereHas('tester', function($q) {$q->whereUserId(Auth::user()->id);})
+////        : static::whereVerification('yes')->where(function ($q) use ($query) {
+////            $q->where('name', 'like', '%'.$query.'%');
+////        });
+//        return empty($query) ? static::query()->whereVerification('yes')
+//            : static::whereVerification('yes')->where(function ($q) use ($query) {
+//                $q->where('name', 'like', '%'.$query.'%');
+//            });
+//    }
+
     public static function search($query)
     {
-//        return empty($query) ? static::query()->whereVerification('yes')->whereHas('tester', function($q) {$q->whereUserId(Auth::user()->id);})
-//        : static::whereVerification('yes')->where(function ($q) use ($query) {
-//            $q->where('name', 'like', '%'.$query.'%');
-//        });
-        return empty($query) ? static::query()->whereVerification('yes')
-            : static::whereVerification('yes')->where(function ($q) use ($query) {
-                $q->where('name', 'like', '%'.$query.'%');
-            });
+        return empty($query) ? static::query()
+            : static::where('tester_name', 'like', '%'.$query.'%');
     }
 
     public static function searchVerification($query)

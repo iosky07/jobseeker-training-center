@@ -19,7 +19,7 @@ class Main extends Component
     public $sortAsc = false;
     public $search = '';
 
-    protected $listeners = [ "deleteItem" => "delete_item", "verifyItem" => "verification_item", "verifySchedule" => "verification_schedule"];
+    protected $listeners = [ "deleteItem" => "delete_item", "verifyItem" => "verification_item", "verifySchedule" => "verification_schedule", "chooseInterview" => "choose_interview"];
 
     public function sortBy($field)
     {
@@ -132,6 +132,7 @@ class Main extends Component
                 break;
 
             case 'payment':
+                if (Auth::user()->role==1) {
                 $payments = $this->model::search($this->search)
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage);
@@ -143,12 +144,31 @@ class Main extends Component
                         'href' => [
 //                            'create_new' => route('admin.payment.create'),
 //                            'create_new_text' => 'Tambah Pembayaran',
-                            'export' => '#' ,
+                            'export' => '#',
                             'export_text' => 'Export'
                         ]
                     ])
                 ];
                 break;
+                }else {
+                    $payments = $this->model::searchUser($this->search)
+                        ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                        ->paginate($this->perPage);
+
+                    return [
+                        "view" => 'livewire.table.payment',
+                        "payments" => $payments,
+                        "data" => array_to_object([
+                            'href' => [
+//                            'create_new' => route('admin.payment.create'),
+//                            'create_new_text' => 'Tambah Pembayaran',
+                                'export' => '#' ,
+                                'export_text' => 'Export'
+                            ]
+                        ])
+                    ];
+                    break;
+                }
 
             case 'payment-verification':
                 $payments = $this->model::searchVerification($this->search)
@@ -173,20 +193,37 @@ class Main extends Component
                 $interviews = $this->model::search($this->search)
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage);
+                if (Auth::user()->role==1 or Auth::user()->role==3) {
+                    return [
+                        "view" => 'livewire.table.interview',
+                        "interviews" => $interviews,
+                        "data" => array_to_object([
+                            'href' => [
+//                                'create_new' => route('admin.interview.create'),
+//                                'create_new_text' => 'Buat Interview Baru',
+//                                'export' => '#',
+//                                'export_text' => 'Export'
+                            ]
+                        ])
+                    ];
+                    break;
+                }else{
+                    return [
+                        "view" => 'livewire.table.interview',
+                        "interviews" => $interviews,
+                        "data" => array_to_object([
+                            'href' => [
+                                'create_new' => route('admin.interview.create'),
+                                'create_new_text' => 'Buat Interview Baru',
+                                'export' => '#',
+                                'export_text' => 'Export'
+                            ]
+                        ])
+                    ];
+                    break;
+                }
 
-                return [
-                    "view" => 'livewire.table.interview',
-                    "interviews" => $interviews,
-                    "data" => array_to_object([
-                        'href' => [
-                            'create_new' => route('admin.interview.create'),
-                            'create_new_text' => 'Buat Interview Baru',
-                            'export' => '#',
-                            'export_text' => 'Export'
-                        ]
-                    ])
-                ];
-                break;
+
 
             case 'interview-verification':
                 $interviews = $this->model::searchVerification($this->search)
@@ -209,23 +246,62 @@ class Main extends Component
 
 
             case 'test':
-                $tests = $this->model::search($this->search)
-                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                    ->paginate($this->perPage);
+                if (Auth::user()->role==1){
+                    $tests = $this->model::search($this->search)
+                        ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                        ->paginate($this->perPage);
 
-                return [
-                    "view" => 'livewire.table.test',
-                    "tests" => $tests,
-                    "data" => array_to_object([
-                        'href' => [
-                            'create_new' => route('admin.test.create'),
-                            'create_new_text' => 'Buat Tes Baru',
-                            'export' => '#',
-                            'export_text' => 'Export'
-                        ]
-                    ])
-                ];
-                break;
+                    return [
+                        "view" => 'livewire.table.test',
+                        "tests" => $tests,
+                        "data" => array_to_object([
+                            'href' => [
+                                'create_new' => route('admin.test.create'),
+                                'create_new_text' => 'Buat Tes Baru',
+                                'export' => '#',
+                                'export_text' => 'Export'
+                            ]
+                        ])
+                    ];
+                    break;
+                }elseif (Auth::user()->role==3) {
+                    $tests = $this->model::search($this->search)
+                        ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                        ->paginate($this->perPage);
+
+                    return [
+                        "view" => 'livewire.table.test',
+                        "tests" => $tests,
+                        "data" => array_to_object([
+                            'href' => [
+//                                'create_new' => route('admin.test.create'),
+//                                'create_new_text' => 'Buat Tes Baru',
+//                                'export' => '#',
+//                                'export_text' => 'Export'
+                            ]
+                        ])
+                    ];
+                    break;
+                } elseif (Auth::user()->role==4) {
+                    $tests = $this->model::searchRegularTest($this->search)
+                        ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                        ->paginate($this->perPage);
+
+                    return [
+                        "view" => 'livewire.table.test',
+                        "tests" => $tests,
+                        "data" => array_to_object([
+                            'href' => [
+//                                'create_new' => route('admin.test.create'),
+//                                'create_new_text' => 'Buat Tes Baru',
+//                                'export' => '#',
+//                                'export_text' => 'Export'
+                            ]
+                        ])
+                    ];
+                    break;
+                }
+
 
             case 'job-info':
                 $jobs = $this->model::search($this->search)
@@ -273,7 +349,7 @@ class Main extends Component
 
     public function verification_item($id){
 //        dd($id);
-
+        dd($this->model);
         $data=$this->model::find($id);
 //        dd($data->user_id);
         User::find($data->user_id)->update(['role'=>3]);
@@ -299,6 +375,7 @@ class Main extends Component
 
     public function verification_schedule($id){
 //        dd($id);
+//        dd($this->model);
         $data = $this->model::whereId($id)->whereVerification('no')->update(['verification' => 'yes']);
 
         if (!$data) {

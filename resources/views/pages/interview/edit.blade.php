@@ -10,6 +10,6 @@
     </x-slot>
 
     <div>
-        <livewire:interview-form action="update" :dataId="request()->interview" />
+        <livewire:interview-form action="update" :dataId="$id" />
     </div>
 </x-app-layout>

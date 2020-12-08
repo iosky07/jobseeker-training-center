@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\QuestionDetail;
+use App\Models\QuestionSubmit;
 use App\Models\Test;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TestController extends Controller
 {
@@ -64,7 +66,20 @@ class TestController extends Controller
     public function show($id)
     {
         $test = Test::findOrFail($id);
-        return view('pages.test.show', compact('test'));
+        $check=QuestionSubmit::whereUserId(Auth::id())->whereHas('questionDetail',function ($q) use ($id) {
+            $q->whereTestId($id);
+        })->get();
+//        dd());
+        if (!count($check)){
+            $quest=QuestionDetail::whereTestId($id)->get();
+            foreach ($quest as $q){
+                QuestionSubmit::create([
+                    'user_id'=>Auth::id(),
+                    'question_detail_id'=>$q->id
+                ]);
+            }
+        }
+        return view('pages.test.show', compact('test','id'));
     }
 
     /**

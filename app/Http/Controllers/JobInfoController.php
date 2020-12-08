@@ -21,9 +21,10 @@ class JobInfoController extends Controller
         return view('pages.job-info.edit', compact('id'));
     }
     public function show($id){
-        $jobs = DB::table('job_articles')
-            ->where('id', '=', $id)
-            ->get();
-        return view('pages.job-info.show', ['jobs' => $jobs]);
+        $job = JobArticle::find($id);
+//            ::table('job_articles')
+//            ->where('id', '=', $id)
+//            ->get();
+        return view('pages.job-info.show', compact('job'));
     }
 }

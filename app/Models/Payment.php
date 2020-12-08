@@ -34,6 +34,15 @@ class Payment extends Model
             });
     }
 
+    public static function searchUser($query)
+    {
+        return empty($query) ? static::query()->whereVerification('no')->whereUserId(Auth::user()->id)
+            : static::whereVerification('no')->where(function ($q) use ($query) {
+                $q->where('user_name', 'like', '%'.$query.'%')
+                    ->orWhere('bank', 'like', '%'.$query.'%');
+            });
+    }
+
     public static function searchVerification($query)
     {
         return empty($query) ? static::query()->whereVerification('no')

@@ -10,6 +10,7 @@
     </x-slot>
 
     <div>
+        @if(Auth::user()->role==1)
         <a role="button" class="btn btn-primary" href="{{route('admin.test.create-question', $test->id)}}" style="margin-bottom: 15px">Tambah Soal</a>
         {{--        <livewire:table.main name="region-terrace" :model="$map" />--}}
         <table class="table">
@@ -47,10 +48,12 @@
             @endforeach
             </tbody>
         </table>
-
+        @endif
 {{--        <div id="table_pagination" class="py-3">--}}
 {{--            {{($test->onEachSide(1)->links())}}--}}
 {{--        </div>--}}
+{{--            {{$id}}--}}
+{{--            <livewire:question-test-form action="update" :dataId="$id" />--}}
 
     </div>
 

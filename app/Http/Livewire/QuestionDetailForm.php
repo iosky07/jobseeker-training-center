@@ -80,7 +80,7 @@ class QuestionDetailForm extends Component
 //dd($this->dataId);
         if (!!$this->dataId) {
             $question = QuestionDetail::findOrFail($this->dataId);
-
+//            dd($question);
             $this->question = [
                 "type" => $question->type,
                 "quest" => $question->quest,

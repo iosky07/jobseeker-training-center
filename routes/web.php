@@ -7,6 +7,7 @@ use App\Http\Controllers\JobInfoController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentVerificationController;
 use App\Http\Controllers\QuestionDetailController;
+use App\Http\Controllers\QuestionTestController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserHrdController;
@@ -129,5 +130,13 @@ Route::name('admin.')->prefix('admin')->middleware(['auth:sanctum','web', 'verif
             ]
         );
     });
-
+    Route::middleware(['checkRole:3,4'])->group(function (){
+        Route::resources(
+            [
+//                'question-test'=> QuestionTestController::class,
+            ]
+        );
+        Route::get('/question-test/{id}/show-question',[QuestionTestController::class,'show'])->name('question-test.show-question');
+        Route::post('/question-test/{id}/value-result',[QuestionTestController::class,'storeDetailMission'])->name('question-test.value-result');
+    });
 });

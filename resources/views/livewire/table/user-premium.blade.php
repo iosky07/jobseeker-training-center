@@ -29,8 +29,9 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at->format('d M Y H:i') }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a role="button" href="{{ route('admin.user-premium.edit', $user->id) }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
-                        <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>
+                        <a href="{{ route('admin.user-premium.show', $user->id) }}" class="btn btn-icon icon-left btn-primary"><i class="far fa-eye"></i> Lihat</a>
+{{--                        <a role="button" href="{{ route('admin.user-premium.edit', $user->id) }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>--}}
+                        <a href="#" x-on:click.prevent="deleteItem" class="btn btn-icon icon-left btn-danger"><i class="fa fa-16px fa-trash"></i> Hapus</a>
                     </td>
                 </tr>
             @endforeach

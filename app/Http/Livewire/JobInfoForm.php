@@ -23,6 +23,7 @@ class JobInfoForm extends Component
 
     public function mount ()
     {
+        $this->job['detail_info']='';
         if (!!$this->dataId) {
             $job = JobArticle::findOrFail($this->dataId);
 
@@ -49,12 +50,14 @@ class JobInfoForm extends Component
         JobArticle::create($this->job);
 
         $this->reset('job');
+        $this->job['detail_info']='';
         $this->emit('swal:alert', [
             'type'    => 'success',
             'title'   => 'Data berhasil masuk',
             'timeout' => 3000,
             'icon'=>'success'
         ]);
+        $this->emit('reset');
     }
 
     public function getRules(){

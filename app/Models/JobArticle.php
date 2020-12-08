@@ -42,6 +42,6 @@ class JobArticle extends Model
     public static function search($query)
     {
         return empty($query) ? static::query()
-            : static::where('title', 'like', '%'.$query.'%');
+            : static::where('company', 'like', '%'.$query.'%');
     }
 }

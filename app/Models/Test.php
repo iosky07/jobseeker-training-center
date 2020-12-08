@@ -67,4 +67,13 @@ class Test extends Model
         return empty($query) ? static::query()
             : static::where('title', 'like', '%'.$query.'%');
     }
+
+    public static function searchRegularTest($query)
+    {
+        return empty($query) ? static::query()->whereCategory('TKD')
+            : static::whereCategory('TKD')->where(function ($q) use ($query) {
+                $q->where('name', 'like', '%'.$query.'%')
+                    ->orWhere('email', 'like', '%'.$query.'%');
+            });
+    }
 }

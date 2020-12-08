@@ -44,6 +44,25 @@ class InterviewForm extends Component
         return $rules;
     }
 
+    public function mount ()
+    {
+        $this->interview['date']='';
+        $this->interview['time']='';
+        if (!!$this->dataId) {
+            $interview = Interview::findOrFail($this->dataId);
+
+            $this->data = [
+                "tester_id" => $interview->tester_id,
+                "tester_name" => $interview->tester_name,
+                "date" => $interview->date,
+                "time" => $interview->time,
+                "quota" => $interview->quota,
+                "media" => $interview->media,
+                "info" => $interview->info,
+            ];
+        }
+    }
+
     public function create()
     {
 //        dd($this->interview);
@@ -72,31 +91,15 @@ class InterviewForm extends Component
         $this->resetErrorBag();
         $this->validate();
 
-        Question::query()
-            ->where('id', $this->dataId)
-            ->update($this->interview);
+        Interview::find($this->dataId)->update($this->interview);
 
-        $this->emit('saved');
-    }
-
-    public function mount ()
-    {
-        $this->interview['date']='';
-        $this->interview['time']='';
-//        dd($interview['tester_id']=Auth::user()->tester->name);
-        if (!!$this->dataId) {
-            $interview = Interview::findOrFail($this->dataId);
-
-            $this->data = [
-                "tester_id" => $interview->tester_id,
-                "tester_name" => $interview->tester_name,
-                "date" => $interview->date,
-                "time" => $interview->time,
-                "quota" => $interview->quota,
-                "media" => $interview->media,
-                "info" => $interview->info,
-            ];
-        }
+        $this->emit('swal:alert', [
+            'type'    => 'success',
+            'title'   => 'Data berhasil update',
+            'timeout' => 3000,
+            'icon'=>'success'
+        ]);
+        $this->emit('redirect');
     }
 
     public function render()

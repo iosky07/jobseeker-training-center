@@ -12,11 +12,15 @@
                    wire:model="job.deadline" required/>
         </div>
 
-        <div class="form-group col-span-6 sm:col-span-5">
+        <div class="form-group col-span-6 sm:col-span-5" wire:ignore>
             <label for="detail">{{__('Detail Info')}}</label>
-                <div class="col-sm-12 col-md-7"  >
-                    <textarea cols="70" rows="5" wire:model="job.detail_info" required></textarea>
-{{--                    <textarea type="text" input="description" id="summernote" class="form-control summernote" wire:model.debounce.500ms="job.detail_info" required></textarea>--}}
+                <div class="col-sm-12 col-md-12" >
+{{--                    <textarea cols="70" rows="5" wire:model="job.detail_info" required></textarea>--}}
+                    <textarea type="text" input="description" id="summernote" class="form-control summernote" required>
+{{--                        @if($this->action=="create")--}}
+                            {{$job['detail_info']}}
+{{--                        @endif--}}
+                    </textarea>
                 </div>
 {{--            <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"--}}
 {{--                   wire:model="job.detail_info" required/>--}}
@@ -45,6 +49,10 @@
                     window.location.href = "{{route('admin.job-info.create')}}"; //will redirect to your blog page (an ex: blog.html)
                 }, 2000); //will call the function after 2 secs.
             });
+            window.livewire.on('reset', () => {
+                $('.summernote').summernote('code','');
+                // $('#summernote').code('');
+            })
         });
     </script>
     <script type="text/javascript">
@@ -64,7 +72,32 @@
                 var data = document.getElementById('time').value;
             @this.set('job.deadline', data)
             })
+            // $("#summernote").on("change.summernote", () => {
+            //     var dataa = document.getElementById('summernote').value;
+            //          @this.set('job.detail_info', dataa)
+            // })
 
+        $('.summernote').summernote({
+
+            tabsize: 2,
+            height: 200,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ],
+            callbacks: {
+                onChange: function (contents, $editable) {
+                @this.set('job.detail_info', contents)
+                }
+            }
+
+        })
+        });
             // $("#date").on("change.timepicker", () => {
             //     use24hours: true
             //     var data = document.getElementById('date').value;
@@ -82,31 +115,9 @@
             //     var dataa= sHours + ":" + sMinutes ;
             // @this.set('job.time', dataa)
             // })
-        });
+
         // document.addEventListener('livewire:load', function () {
-        // $("#summernote").on("change.summernote", () => {
-        //     var dataa = document.getElementById('summernote').value;
-        // @this.set('job.detail_info', dataa)
-        // })
-        // });
-        // $('.summernote').summernote({
-        //     tabsize: 2,
-        //     height: 200,
-        //     toolbar: [
-        //         ['style', ['style']],
-        //         ['font', ['bold', 'underline', 'clear']],
-        //         ['color', ['color']],
-        //         ['para', ['ul', 'ol', 'paragraph']],
-        //         ['table', ['table']],
-        //         ['insert', ['link', 'picture', 'video']],
-        //         ['view', ['fullscreen', 'codeview', 'help']]
-        //     ],
-        //     callbacks: {
-        //         onChange: function(contents, $editable) {
-        //         @this.set('job.detail_info', contents);
-        //         }
-        //     }
-        // });
+
         //
         // $('#message').summernote({
         //     height: 200,

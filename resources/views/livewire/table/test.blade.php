@@ -28,11 +28,15 @@
                     <td>{{ $test->title }}</td>
                     <td>{{ $test->category }}</td>
                     <td>{{ $test->time_limit }}</td>
+
                     <td class="whitespace-no-wrap row-action--icon">
                         @if(Auth::user()->role==1)
-                        <a role="button" href="{{ route('admin.test.edit', $test->id) }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
-                        <a role="button" href="{{ route('admin.test.show', $test->id) }}" class="mr-3"><i class="fa fa-16px fa-eye"></i></a>
-                        <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>
+                            <a href="{{ route('admin.test.show', $test->id) }}" class="btn btn-icon icon-left btn-primary"><i class="far fa-eye"></i> Lihat</a>
+                            <a href="{{ route('admin.test.edit', $test->id) }}" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                            <a href="#" x-on:click.prevent="deleteItem" class="btn btn-icon icon-left btn-danger"><i class="fa fa-16px fa-trash"></i> Hapus</a>
+                        @endif
+                        @if(Auth::user()->role==3 or Auth::user()->role==4)
+                            <a href="{{ route('admin.question-test.show-question', $test->id) }}" class="btn btn-icon icon-left btn-success"><i class="fa fa-pen"></i> Kerjakan Tes</a>
                         @endif
                     </td>
                 </tr>

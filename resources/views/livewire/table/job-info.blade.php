@@ -29,10 +29,10 @@
                     <td>{{ $job->deadline }}</td>
                     <td>{{ $job->link_info }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a role="button" href="{{ route('admin.job-info.show', $job->id) }}" class="mr-3"><i class="fa fa-16px fa-eye"></i></a>
+                        <a href="{{ route('admin.job-info.show', $job->id) }}" class="btn btn-icon icon-left btn-primary"><i class="far fa-eye"></i> Lihat</a>
                         @if(Auth::user()->role==1)
-                        <a role="button" href="{{ route('admin.job-info.edit', $job->id) }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
-                        <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>
+                        <a href="{{ route('admin.job-info.edit', $job->id) }}" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                        <a href="#" x-on:click.prevent="deleteItem" class="btn btn-icon icon-left btn-danger"><i class="fa fa-16px fa-trash"></i> Hapus</a>
                         @endif
                     </td>
                 </tr>

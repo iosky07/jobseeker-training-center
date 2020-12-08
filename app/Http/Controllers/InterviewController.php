@@ -59,7 +59,7 @@ class InterviewController extends Controller
      */
     public function edit($id)
     {
-        return view('pages.interview.edit');
+        return view('pages.interview.edit', compact('id'));
     }
 
     /**

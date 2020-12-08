@@ -26,7 +26,7 @@
                     Kuota
                     @include('components.sort-icon', ['field' => 'quota'])
                 </a></th>
-                <th>Action</th>
+                    <th>Action</th>
             </tr>
         </x-slot>
         <x-slot name="body">
@@ -38,12 +38,16 @@
                     <td>{{ $interview->date }}</td>
                     <td>{{ $interview->time }}</td>
                     <td>{{ $interview->quota }}</td>
-                    <td class="whitespace-no-wrap row-action--icon">
-                        @if(Auth::user()->role==1 or Auth::user()->role==2)
-                        <a role="button" href="{{ route('admin.interview.edit', $interview->id) }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
-                        <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>
-                        @endif
-                    </td>
+                        <td class="whitespace-no-wrap row-action--icon">
+                    @if(Auth::user()->role==2)
+{{--                            <a href="{{ route('admin.question-detail.show', $question->id) }}" class="btn btn-icon icon-left btn-primary"><i class="far fa-eye"></i> Lihat</a>--}}
+                            <a href="{{ route('admin.interview.edit', $interview->id) }}" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                            <a href="#" x-on:click.prevent="deleteItem" class="btn btn-icon icon-left btn-danger"><i class="fa fa-16px fa-trash"></i> Hapus</a>
+                    @endif
+                    @if(Auth::user()->role==3)
+                        <a href="#" class="btn btn-icon icon-left btn-success"><i class="fa fa-hand-grab-o"></i> Pilih</a>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
         </x-slot>

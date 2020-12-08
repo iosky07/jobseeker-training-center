@@ -23,7 +23,7 @@
                     @include('components.sort-icon', ['field' => 'thumbnail'])
                 </a></th>
                 <th><a wire:click.prevent="sortBy('created_at')" role="button" href="#">
-                    Tanggal Verifikasi
+                    Tanggal Upload
                     @include('components.sort-icon', ['field' => 'created_at'])
                 </a></th>
 {{--                <th>Action</th>--}}
