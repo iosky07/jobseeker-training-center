@@ -322,6 +322,25 @@ class Main extends Component
                 ];
                 break;
 
+            case 'score':
+                $score = $this->model::search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage);
+
+                return [
+                    "view" => 'livewire.table.question-score',
+                    "score" => $score,
+                    "data" => array_to_object([
+                        'href' => [
+//                            'create_new' => route('admin.job-info.create'),
+//                            'create_new_text' => 'Buat Info Baru',
+//                            'export' => '#',
+//                            'export_text' => 'Export'
+                        ]
+                    ])
+                ];
+                break;
+
             default:
                 # code...
                 break;

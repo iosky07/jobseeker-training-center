@@ -36,7 +36,8 @@
                             <a href="#" x-on:click.prevent="deleteItem" class="btn btn-icon icon-left btn-danger"><i class="fa fa-16px fa-trash"></i> Hapus</a>
                         @endif
                         @if(Auth::user()->role==3 or Auth::user()->role==4)
-                            <a href="{{ route('admin.question-test.show-question', $test->id) }}" class="btn btn-icon icon-left btn-success"><i class="fa fa-pen"></i> Kerjakan Tes</a>
+{{--                            @if()--}}
+                            <a href="{{ route('admin.question-test.show', $test->id) }}" class="btn btn-icon icon-left btn-success"><i class="fa fa-pen"></i> Kerjakan Tes</a>
                         @endif
                     </td>
                 </tr>

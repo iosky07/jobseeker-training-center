@@ -66,7 +66,7 @@
         @if(Auth::user()->role==4)
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="col-lg-6">INI ADALAH DASBOR JOBSEEKER REGULAR</h4><h5 class="col-lg-6 text-danger text-right"><h5></h5>Info Rekening Pembayaran : 3312-1223-2347 (Hariono)</h5>
+                        <h4 class="col-lg-6">INI ADALAH DASBOR JOBSEEKER REGULAR</h4><h5 class="col-lg-6 text-danger text-right">Info Rekening Pembayaran : 3312-1223-2347 (Hariono)</h5>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Special title treatment</h5>

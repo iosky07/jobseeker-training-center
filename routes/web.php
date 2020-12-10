@@ -7,6 +7,7 @@ use App\Http\Controllers\JobInfoController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentVerificationController;
 use App\Http\Controllers\QuestionDetailController;
+use App\Http\Controllers\QuestionScoreController;
 use App\Http\Controllers\QuestionTestController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
@@ -131,12 +132,15 @@ Route::name('admin.')->prefix('admin')->middleware(['auth:sanctum','web', 'verif
         );
     });
     Route::middleware(['checkRole:3,4'])->group(function (){
+        Route::get('/question-score/{id}/show-score/{point}',[QuestionScoreController::class,'showScore'])->name('question-score.show-score');
+        Route::get('/question-test/{id}/show-question/{no}',[QuestionTestController::class,'showDetailMission'])->name('question-test.show-question');
+        Route::post('/question-test/{id}/value-result/{no}',[QuestionTestController::class,'storeDetailMission'])->name('question-test.value-result');
         Route::resources(
             [
-//                'question-test'=> QuestionTestController::class,
+                'question-test'=> QuestionTestController::class,
+                'question-score' => QuestionScoreController::class
             ]
         );
-        Route::get('/question-test/{id}/show-question',[QuestionTestController::class,'show'])->name('question-test.show-question');
-        Route::post('/question-test/{id}/value-result',[QuestionTestController::class,'storeDetailMission'])->name('question-test.value-result');
+
     });
 });

@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @property integer $id
  * @property integer $user_id
  * @property integer $test_id
  * @property int $score
+ * @property int $category
  * @property string $created_at
  * @property string $updated_at
  * @property Test $test
@@ -18,7 +20,7 @@ class QuestionScore extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -26,7 +28,7 @@ class QuestionScore extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'test_id', 'score', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'test_id', 'score', 'category', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -42,5 +44,11 @@ class QuestionScore extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public static function search($query)
+    {
+        return empty($query) ? static::query()->whereUserId(Auth::user()->id)
+            : static::where('tes_id', 'like', '%'.$query.'%');
     }
 }

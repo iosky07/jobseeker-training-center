@@ -34,10 +34,11 @@ class QuestionDetail extends Model
      */
     protected $fillable = ['test_id', 'type', 'quest', 'a', 'b', 'c', 'd', 'e', 'value', 'created_at', 'updated_at'];
 
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function test()
+    public function tests()
     {
         return $this->belongsTo('App\Models\Test');
     }

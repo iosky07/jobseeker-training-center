@@ -104,7 +104,7 @@
                    "section_icon" => "fa fa-file",
                     "section_list" => [
                         ["href" => "admin.test.index", "text" => "Latihan Soal"],
-//                        ["href" => "admin.question-detail.create", "text" => "Tambah Soalmu"]
+                        ["href" => "admin.question-score.index", "text" => "Riwayat Nilai"]
                   ]
                 ],
                 [
@@ -144,7 +144,8 @@
                    "section_text" => "Soal",
                    "section_icon" => "fa fa-file",
                     "section_list" => [
-                        ["href" => "admin.test.index", "text" => "Soal TKD, TPA, TBI"],
+                        ["href" => "admin.test.index", "text" => "Latihan Soal"],
+                        ["href" => "admin.question-score.index", "text" => "Riwayat Nilai"]
                   ]
                 ],
                 [

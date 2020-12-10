@@ -11,82 +11,84 @@
                     {{$errors->first()}}
                 </div>
             @endif
-
+{{--            @foreach($mission as $q)--}}
+{{--            @endforeach--}}
             <div class="card">
                 <div class="card-body">
-                    {!! $question_test->questionDetails->quest !!}
+
+                    {!! $mission->questionDetail->quest !!}
                 </div>
             </div>
-            <form action="{{route('admin.question-test.value-result',[$id,$question_test->number])}}" method="post" class="clearfix">
+            <form action="{{route('admin.question-test.value-result',[$id,$mission->number])}}" method="post" class="clearfix">
                 @csrf
-                @if($question_test->questionDetails)
-                    @if($question_test->questionDetails->a!=null)
+                    @if($mission->questionDetail->a!=null)
                         <label class="form-control text-left " style="height: 100%">
                             <div class="row">
                                 <div class="col-md-1">
-                                    <input type="radio" name="answer" value="1" class="">
+                                    <input type="radio" name="answer" value="a" class="" {{$mission->answer=='a'?'checked':''}}>
                                 </div>
                                 <div class="col-md-11">
-                                    {!! $question_test->questionDetails->a !!}
+                                    {!! $mission->questionDetail->a !!}
                                 </div>
                             </div>
                         </label>
                     @endif
-                    @if($question_test->questionDetails->b!=null)
+                    @if($mission->questionDetail->b!=null)
                         <label class="form-control text-left " style="height: 100%">
                             <div class="row">
                                 <div class="col-md-1">
-                                    <input type="radio" name="answer" value="1" class="">
+                                    <input type="radio" name="answer" value="b" class="" {{$mission->answer=='b'?'checked':''}}>
                                 </div>
                                 <div class="col-md-11">
-                                    {!! $question_test->questionDetails->b !!}
+                                    {!! $mission->questionDetail->b !!}
                                 </div>
                             </div>
                         </label>
                     @endif
-                    @if($question_test->questionDetails->c!=null)
+                    @if($mission->questionDetail->c!=null)
                         <label class="form-control text-left " style="height: 100%">
                             <div class="row">
                                 <div class="col-md-1">
-                                    <input type="radio" name="answer" value="1" class="">
+                                    <input type="radio" name="answer" value="c" class="" {{$mission->answer=='c'?'checked':''}}>
                                 </div>
                                 <div class="col-md-11">
-                                    {!! $question_test->questionDetails->c !!}
+                                    {!! $mission->questionDetail->c !!}
                                 </div>
                             </div>
                         </label>
                     @endif
-                    @if($question_test->questionDetails->d!=null)
+                    @if($mission->questionDetail->d!=null)
                         <label class="form-control text-left " style="height: 100%">
                             <div class="row">
                                 <div class="col-md-1">
-                                    <input type="radio" name="answer" value="1" class="">
+                                    <input type="radio" name="answer" value="d" class="" {{$mission->answer=='d'?'checked':''}}>
                                 </div>
                                 <div class="col-md-11">
-                                    {!! $question_test->questionDetails->d !!}
+                                    {!! $mission->questionDetail->d !!}
                                 </div>
                             </div>
                         </label>
                     @endif
-                    @if($question_test->questionDetails->e!=null)
+                    @if($mission->questionDetail->e!=null)
                         <label class="form-control text-left " style="height: 100%">
                             <div class="row">
                                 <div class="col-md-1">
-                                    <input type="radio" name="answer" value="1" class="">
+                                    <input type="radio" name="answer" value="e" class="" {{$mission->answer=='e'?'checked':''}}>
                                 </div>
                                 <div class="col-md-11">
-                                    {!! $question_test->questionDetails->e !!}
+                                    {!! $mission->questionDetail->e !!}
                                 </div>
                             </div>
                         </label>
                     @endif
-                @endif
                 <div class="row">
-                        <a href="{{route('admin.question-test.value-result',[$id,$question_test->number-1])}}" class="btn btn-success">Kembali</a>
-                    @if(count($allMission)!=$question_test->number)
-                        <a href="{{route('admin.question-test.value-result',[$id,$question_test->number+1])}}" class="btn btn-success">Lewati</a>
+                    @if($mission->number!=1)
+                        <a href="{{route('admin.question-test.show-question',[$id,$mission->number-1])}}" class="btn btn-success">Kembali</a>
                     @endif
-                    <a href="{{route('admin-test-index',[$id])}}" class="btn btn-danger">Selesai dan kembali</a>
+                    @if(count($allMission)!=$mission->number)
+                        <a href="{{route('admin.question-test.show-question',[$id,$mission->number+1])}}" class="btn btn-success">Lewati</a>
+                    @endif
+                    <a href="{{route('admin.test.index')}}" class="btn btn-danger">Selesai dan kembali</a>
 
                     <input type="submit" class="btn btn-success float-right" value="Simpan dan lanjut">
                 </div>
@@ -99,7 +101,7 @@
         <div class="col-md-2 m-3 mt-5">
             <div class="row">
                 @foreach($allMission as $aq)
-                    <a href="{{route('admin.question-test.value-result',[$id,$aq->number])}}" class="btn {{($aq->answer!=null)?'btn-success':'border-dark'}}">{{$aq->number}}</a>
+                    <a href="{{route('admin.question-test.show-question',[$id,$aq->number])}}" class="btn {{($aq->answer!=null)?'btn-success':'border-dark'}}">{{$aq->number}}</a>
                 @endforeach
             </div>
         </div>
@@ -111,8 +113,8 @@
 {{--    @endforeach--}}
 {{--        <p>{{$a->questionDetail->quest}}</p>--}}
 {{--    <div>--}}
-{{--        <livewire:question-test-form action="update" :dataId="$question_test" />--}}
-{{--        @foreach($question_test as $q)--}}
+{{--        <livewire:question-test-form action="update" :dataId="$mission" />--}}
+{{--        @foreach($mission as $q)--}}
 {{--            <form id="question" action="#" method="post">--}}
 {{--                @csrf--}}
 {{--                <div class="card">--}}
