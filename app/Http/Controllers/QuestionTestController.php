@@ -84,11 +84,18 @@ class QuestionTestController extends Controller
                 }
             }
 //            dd($point);
+            if ($point >= 70) {
+                $status = "Lulus";
+            }else{
+                $status = "Tidak Lulus";
+            }
+
             $score = array(
                 'user_id' => Auth::user()->id,
                 'test_id' => $id,
                 'score' => $point,
-                'category' => $category_test[0]->category
+                'category' => $category_test[0]->category,
+                'status' => $status
             );
 //            dd($score);
             QuestionScore::create($score);

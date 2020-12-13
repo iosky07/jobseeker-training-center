@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
  * @property integer $test_id
  * @property int $score
  * @property int $category
+ * @property int $status
  * @property string $created_at
  * @property string $updated_at
  * @property Test $test
@@ -28,7 +29,7 @@ class QuestionScore extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'test_id', 'score', 'category', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'test_id', 'score', 'category', 'status', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

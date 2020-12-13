@@ -21,6 +21,10 @@
                 <th><a wire:click.prevent="sortBy('created_at')" role="button" href="#">
                     Tanggal Pengerjaan
                     @include('components.sort-icon', ['field' => 'created_at'])
+                </a></th>
+                <th><a wire:click.prevent="sortBy('status')" role="button" href="#">
+                    Status
+                    @include('components.sort-icon', ['field' => 'status'])
             </tr>
         </x-slot>
         <x-slot name="body">
@@ -31,6 +35,12 @@
                     <td>{{ $s->category }}</td>
                     <td>{{ $s->score }}</td>
                     <td>{{ $s->created_at->format('d M Y H:i') }}</td>
+                    @if($s->status == "Lulus")
+                        <td class="bg-success text-light">{{ $s->status }}</td>
+                    @endif
+                    @if($s->status == "Tidak Lulus")
+                        <td class="bg-danger text-light">{{ $s->status }}</td>
+                    @endif
                 </tr>
             @endforeach
         </x-slot>
