@@ -51,4 +51,10 @@ class QuestionScore extends Model
         return empty($query) ? static::query()->whereUserId(Auth::user()->id)
             : static::where('tes_id', 'like', '%'.$query.'%');
     }
+
+    public static function searchAdmin($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('tes_id', 'like', '%'.$query.'%');
+    }
 }

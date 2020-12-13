@@ -33,10 +33,10 @@
                     <td>{{ $payment->user_name }}</td>
                     <td>{{ $payment->bank }}</td>
                     <td><img src="{{ asset('storage/payment/'.$payment->thumbnail) }}" alt="" style="max-height: 200px"></td>
-{{--                    <td>{{ $payment->verification }}</td>--}}
+{{--                    <td>{{ $payment->choosen }}</td>--}}
                     {{--                    <td>{{ $payment->created_at->format('d M Y H:i') }}</td>--}}
                     <td class="whitespace-no-wrap row-action--icon">
-{{--                        <a role="button" href="{{ route('admin.payment-verification.edit', $payment->id) }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>--}}
+{{--                        <a role="button" href="{{ route('admin.payment-choosen.edit', $payment->id) }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>--}}
                         <a role="button" x-on:click.prevent="verifyItem" class="btn btn-warning">Verifikasi</a>
                         <a role="button" x-on:click.prevent="deleteItem" class="btn btn-danger">Hapus</a>
                     </td>

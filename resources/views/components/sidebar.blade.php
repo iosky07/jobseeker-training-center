@@ -12,11 +12,11 @@
         $add = [
             "href" => [
                 [
-                    "section_text" => "Jadwal",
-                    "section_icon" => "fa fa-calendar",
+                    "section_text" => "Interview",
+                    "section_icon" => "fa fa-microphone-alt",
                     "section_list" => [
                         ["href" => "admin.interview.index", "text" => "Jadwal Interview"],
-//                        ["href" => "admin.test.index", "text" => "Jadwal Tes"]
+                        ["href" => "admin.interview-score.index", "text" => "Tambah Nilai"]
                     ]
                 ],
             ],
@@ -45,23 +45,23 @@
                     "section_icon" => "fa fa-briefcase",
                     "section_list" => [
                         ["href" => "admin.job-info.index", "text" => "Data Loker"],
-                        ["href" => "admin.job-info.create", "text" => "Tambah Info"]
+//                        ["href" => "admin.job-info.create", "text" => "Tambah Info"]
                     ]
                 ],
                 [
                    "section_text" => "Soal",
                    "section_icon" => "fa fa-file",
                     "section_list" => [
-                        ["href" => "admin.test.index", "text" => "Soal TKD, TPA, TBI"],
-//                        ["href" => "admin.question-detail.create", "text" => "Tambah Soalmu"]
+                        ["href" => "admin.test.index", "text" => "Tambah Soal"],
+                        ["href" => "admin.question-score.index", "text" => "Riwayat Jobseeker"]
                   ]
                 ],
                 [
-                    "section_text" => "Jadwal",
-                    "section_icon" => "fa fa-calendar",
+                    "section_text" => "Interview",
+                    "section_icon" => "fa fa-microphone-alt",
                     "section_list" => [
-//                        ["href" => "admin.interview-verification.index", "text" => "Verifikasi Jadwal"],
-                        ["href" => "admin.interview.index", "text" => "Jadwal Interview"]
+                        ["href" => "admin.interview.index", "text" => "Jadwal Interview"],
+                        ["href" => "admin.interview-score.index", "text" => "Riwayat Jobseeker"]
                     ]
                 ],
                 [
@@ -108,11 +108,12 @@
                   ]
                 ],
                 [
-                    "section_text" => "Jadwal",
-                    "section_icon" => "fa fa-calendar",
+                    "section_text" => "Interview",
+                    "section_icon" => "fa fa-microphone-alt",
                     "section_list" => [
                         ["href" => "admin.interview.index", "text" => "Jadwal Interview"],
- //                       ["href" => "admin.test.index", "text" => "Jadwal Tes"]
+                        ["href" => "admin.interview-choosen.index", "text" => "Jadwal Saya"],
+                        ["href" => "admin.interview-score.index", "text" => "Riwayat Tes"]
                     ]
                 ],
             ],

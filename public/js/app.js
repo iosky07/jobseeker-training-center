@@ -19412,6 +19412,24 @@ function dataTableController(id) {
               }
           });
       },
+      chooseInterview: function chooseInterview() {
+          var _this = this;
+
+          Swal.fire({
+              title: 'Pilih Jadwal Interview',
+              text: "Apakah Anda ingin memilih jadwal ini?",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Ya, pilih!',
+              cancelButtonText: 'Batal'
+          }).then(function (result) {
+              if (result.isConfirmed) {
+                  Livewire.emit('chooseInterview', _this.id);
+              }
+          });
+      },
   };
 }
 

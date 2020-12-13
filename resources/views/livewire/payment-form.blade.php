@@ -5,6 +5,7 @@
         <div class="form-group col-span-6 sm:col-span-5">
             <label for="name">{{__('Pilih Bank')}}</label>
             <select name="bank" id="bank" wire:model.defer="payment.bank" class="form-control">
+                <option value="#">--- Pilih Bank ---</option>
                 <option value="BRI">BRI</option>
                 <option value="BCA">BCA</option>
                 <option value="Mandiri">Mandiri</option>

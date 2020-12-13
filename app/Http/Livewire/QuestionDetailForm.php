@@ -21,7 +21,6 @@ class QuestionDetailForm extends Component
     {
         if ($this->action=="create"){
             $rules=[
-                'question.type' => ' required|max:256',
                 'question.quest' => 'required|max:256',
                 'question.a' => 'required|max:256',
                 'question.b' => 'required|max:256',
@@ -32,7 +31,6 @@ class QuestionDetailForm extends Component
             ];
         }else{
             $rules=[
-                'question.type' => ' required|max:256',
                 'question.quest' => 'required|max:256',
                 'question.a' => 'required|max:256',
                 'question.b' => 'required|max:256',
@@ -48,15 +46,17 @@ class QuestionDetailForm extends Component
     public function create()
     {
         $this->question['test_id'] = $this->testId;
+//        dd($this->question);
         QuestionDetail::create($this->question);
 
-        $this->reset('question');
+//        $this->reset('question');
         $this->emit('swal:alert', [
             'type'    => 'success',
             'title'   => 'Data berhasil masuk',
             'timeout' => 3000,
             'icon'=>'success'
         ]);
+        return redirect(route('admin.test.show', $this->testId));
     }
 
     public function update()
@@ -73,11 +73,18 @@ class QuestionDetailForm extends Component
             'timeout' => 3000,
             'icon'=>'success'
         ]);
+        return redirect(route('admin.test.edit', $this->id));
     }
 
     public function mount ()
     {
 //dd($this->dataId);
+        $this->question['quest'] = '';
+        $this->question['a'] = '';
+        $this->question['b'] = '';
+        $this->question['c'] = '';
+        $this->question['d'] = '';
+        $this->question['e'] = '';
         if (!!$this->dataId) {
             $question = QuestionDetail::findOrFail($this->dataId);
 //            dd($question);

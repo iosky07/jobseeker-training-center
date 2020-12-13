@@ -6,47 +6,39 @@
                     ID
                     @include('components.sort-icon', ['field' => 'id'])
                 </a></th>
-                <th><a wire:click.prevent="sortBy('tester_id')" role="button" href="#">
-                    ID HRD
-                    @include('components.sort-icon', ['field' => 'tester_id'])
+                <th><a wire:click.prevent="sortBy('user_id')" role="button" href="#">
+                    ID User
+                    @include('components.sort-icon', ['field' => 'user_id'])
                 </a></th>
-                <th><a wire:click.prevent="sortBy('tester_name')" role="button" href="#">
-                    Nama
-                    @include('components.sort-icon', ['field' => 'tester_name'])
+                <th><a wire:click.prevent="sortBy('name')" role="button" href="#">
+                    Nama User
+                    @include('components.sort-icon', ['field' => 'name'])
                 </a></th>
                 <th><a wire:click.prevent="sortBy('date')" role="button" href="#">
-                    Tanggal
+                    Tanggal Tes
                     @include('components.sort-icon', ['field' => 'date'])
                 </a></th>
                 <th><a wire:click.prevent="sortBy('time')" role="button" href="#">
                     Jam
                     @include('components.sort-icon', ['field' => 'time'])
                 </a></th>
-                @if(Auth::user()->role==2 or Auth::user()->role==3)
                     <th>Action</th>
-                @endif
             </tr>
         </x-slot>
         <x-slot name="body">
             @foreach ($interviews as $interview)
                 <tr x-data="window.__controller.dataTableController({{ $interview->id }})">
                     <td>{{ $interview->id }}</td>
-                    <td>{{ $interview->tester_id }}</td>
-                    <td>{{ $interview->tester_name }}</td>
+                    <td>{{ $interview->user_id }}</td>
+                    <td>{{ $interview->name }}</td>
                     <td>{{ $interview->date }}</td>
                     <td>{{ $interview->time }}</td>
-                    @if(Auth::user()->role==2 or Auth::user()->role==3)
-                    <td class="whitespace-no-wrap row-action--icon">
+                        <td class="whitespace-no-wrap row-action--icon">
                     @if(Auth::user()->role==2)
 {{--                            <a href="{{ route('admin.question-detail.show', $question->id) }}" class="btn btn-icon icon-left btn-primary"><i class="far fa-eye"></i> Lihat</a>--}}
-                            <a href="{{ route('admin.interview.edit', $interview->id) }}" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
-                            <a href="#" x-on:click.prevent="deleteItem" class="btn btn-icon icon-left btn-danger"><i class="fa fa-16px fa-trash"></i> Hapus</a>
+                            <a href="{{ route('admin.interview-score.edit', $interview->id) }}" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
                     @endif
-                    @if(Auth::user()->role==3)
-                        <a href="#" x-on:click.prevent="chooseInterview" class="btn btn-icon icon-left btn-success"><i class="fa fa-hand-grab-o"></i> Pilih</a>
-                        </td>
-                    @endif
-                    @endif
+                        <a href="{{ route('admin.interview-score.show', $interview->id) }}" class="btn btn-icon icon-left btn-primary"><i class="fas fa-eye"></i> Lihat</a>
                 </tr>
             @endforeach
         </x-slot>

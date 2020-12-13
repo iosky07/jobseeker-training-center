@@ -19,6 +19,13 @@ class InterviewController extends Controller
         ]);
     }
 
+    public function showChoosen()
+    {
+        return view('pages.interview.choosen.index', [
+            'interview' => Interview::class
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,7 +55,9 @@ class InterviewController extends Controller
      */
     public function show($id)
     {
-        //
+        $interview = Interview::find($id);
+
+        return view('pages.interview.choosen.show', compact('interview'));
     }
 
     /**

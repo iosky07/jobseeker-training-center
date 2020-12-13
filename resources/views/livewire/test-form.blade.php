@@ -7,14 +7,10 @@
                    wire:model="test.title" required/>
         </div>
 
-{{--        <div class="form-group col-span-6 sm:col-span-5">--}}
-{{--            <label for="name">{{__('Kategori')}}</label>--}}
-{{--            <input id="date" type="text" class="form-control datepicker"--}}
-{{--                   wire:model.defer="test.category" required/>--}}
-{{--        </div>--}}
         <div class="form-group col-span-6 sm:col-span-5">
             <x-jet-label for="name" value="{{ __('Kategori') }}" />
             <select name="role" id="role" wire:model="test.category" class="form-control">
+                <option value="#">--- Pilih Kategori ---</option>
                 <option value="TKD">TKD</option>
                 <option value="TPA">TPA</option>
                 <option value="TBI">TBI</option>

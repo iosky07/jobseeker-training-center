@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\InterviewController;
+use App\Http\Controllers\InterviewScoreController;
 use App\Http\Controllers\InterviewVerificationController;
 use App\Http\Controllers\JobInfoController;
 use App\Http\Controllers\PaymentController;
@@ -73,7 +74,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth:sanctum','web', 'verif
         Route::resources(
             [
                 'payment-verification'=> PaymentVerificationController::class,
-                'interview-verification'=> InterviewVerificationController::class,
+                'interview-choosen'=> InterviewVerificationController::class,
             ]
         );
         Route::get('/test/{id}/create-question',[TestController::class,'createQuestion'])->name('test.create-question');
@@ -85,6 +86,14 @@ Route::name('admin.')->prefix('admin')->middleware(['auth:sanctum','web', 'verif
         Route::resources(
             [
                 'user-hrd'=> UserHrdController::class,
+            ]
+        );
+    });
+
+    Route::middleware(['checkRole:1,2,3'])->group(function (){
+        Route::resources(
+            [
+                'interview-score'=> InterviewScoreController::class,
             ]
         );
     });
@@ -116,6 +125,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth:sanctum','web', 'verif
     });
 
     Route::middleware(['checkRole:1,2,3'])->group(function (){
+        Route::get('/interview/choosen',[InterviewController::class,'showChoosen'])->name('interview-choosen.index');
         Route::resources(
             [
                 'interview'=>InterviewController::class,
@@ -131,7 +141,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth:sanctum','web', 'verif
             ]
         );
     });
-    Route::middleware(['checkRole:3,4'])->group(function (){
+    Route::middleware(['checkRole:1,3,4'])->group(function (){
         Route::get('/question-score/{id}/show-score/{point}',[QuestionScoreController::class,'showScore'])->name('question-score.show-score');
         Route::get('/question-test/{id}/show-question/{no}',[QuestionTestController::class,'showDetailMission'])->name('question-test.show-question');
         Route::post('/question-test/{id}/value-result/{no}',[QuestionTestController::class,'storeDetailMission'])->name('question-test.value-result');

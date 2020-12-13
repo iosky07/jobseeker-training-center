@@ -58,6 +58,7 @@ class JobInfoForm extends Component
             'icon'=>'success'
         ]);
         $this->emit('reset');
+        return redirect(route('admin.job-info.index'));
     }
 
     public function getRules(){

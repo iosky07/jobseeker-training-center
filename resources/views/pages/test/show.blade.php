@@ -31,13 +31,13 @@
             @foreach($test->questionDetails as $t)
                 <tr>
                     <td>{{$t->id}}</td>
-                    <td>{{$t->quest}}</td>
-                    <td>{{$t->a}}</td>
-                    <td>{{$t->b}}</td>
-                    <td>{{$t->c}}</td>
-                    <td>{{$t->d}}</td>
-                    <td>{{$t->e}}</td>
-                    <td>{{$t->value}}</td>
+                    <td>{!!$t->quest!!}</td>
+                    <td>{!!$t->a!!}</td>
+                    <td>{!!$t->b!!}</td>
+                    <td>{!!$t->c!!}</td>
+                    <td>{!!$t->d!!}</td>
+                    <td>{!!$t->e!!}</td>
+                    <td>{!!$t->value!!}</td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" href="{{ route('admin.question-detail.edit', $t->id) }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
 {{--                        <a role="button" href="{{ route('admin.test.show', $test->id) }}" class="mr-3"><i class="fa fa-16px fa-eye"></i></a>--}}

@@ -1,5 +1,5 @@
-<div class="mt-10">
-    <div class="col-12 col-sm-10 col-lg-12 col-md-12">
+<div class="row">
+    <div class="col-12 col-sm-12 col-lg-12 col-md-12" style="width: 100%">
         <div class="card chat-box" id="mychatbox">
             <div class="card-header">
                 <h4>FORUM JOBSEEKER</h4>
@@ -8,13 +8,13 @@
                 @foreach(array_reverse($messages) as $message)
                     <div>
                         @if($message["received"])
-                            <div class="alert alert-warning" style="margin-right: 10px;">
+                            <div class="alert alert-warning" style="margin-right: 100px;">
                                 <strong style="color: #4e555b">{{$message["user"]}}</strong><small
                                     class="float-right">{{$message["date"]}}</small>
                                 <br><span class="text-light-all">{{$message["message"]}}</span>
                             </div>
                         @else
-                            <div class="alert" style="margin-left: 10px; background-color: #66FF66;">
+                            <div class="alert" style="margin-left: 100px; background-color: #66FF66;">
                                 <strong style="color: #4e555b">{{$message["user"]}}</strong><small
                                     class="float-right">{{$message["date"]}}</small>
                                 <br><span class="text-light-all">{{$message["message"]}}</span>

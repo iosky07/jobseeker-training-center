@@ -36,7 +36,6 @@ class TestForm extends Component
 
     public function create()
     {
-
         Test::create($this->test);
 
         $this->reset('test');
@@ -46,6 +45,7 @@ class TestForm extends Component
             'timeout' => 3000,
             'icon'=>'success'
         ]);
+        return redirect(route('admin.test.index'));
     }
 
     public function update()

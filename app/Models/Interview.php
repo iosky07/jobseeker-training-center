@@ -23,11 +23,16 @@ class Interview extends Model
     /**
      * @var array
      */
-    protected $fillable = ['tester_id', 'date', 'time', 'quota', 'tester_name','media','info'];
+    protected $fillable = ['tester_id', 'date', 'time', 'tester_name','media','info'];
 
     public function tester()
     {
         return $this->belongsTo('App\Models\Tester');
+    }
+
+    public function interviewScore()
+    {
+        return $this->HasMany('App\Models\Tester');
     }
 
 //    public static function search($query)
@@ -44,15 +49,31 @@ class Interview extends Model
 
     public static function search($query)
     {
-        return empty($query) ? static::query()
-            : static::where('tester_name', 'like', '%'.$query.'%');
+        $data = count(Interview::whereUserId(Auth::id())->get('user_id'));
+//        dd($data);
+        if ($data != NULL) {
+            return empty($query) ? static::query()->whereUserId('nothing')
+                : static::where('tester_name', 'like', '%'.$query.'%');
+        }else{
+            return empty($query) ? static::query()->whereUserId(NULL)
+                : static::where('tester_name', 'like', '%'.$query.'%');
+        }
+//        return empty($query) ? static::query()->whereUserId(NULL)
+//            : static::where('tester_name', 'like', '%'.$query.'%');
+
     }
 
-    public static function searchVerification($query)
+    public static function searchChoosen($query)
     {
-        return empty($query) ? static::query()->whereVerification('no')
-            : static::whereVerification('no')->where(function ($q) use ($query) {
+        return empty($query) ? static::query()->whereUserId(Auth::id())
+            : static::whereUserId(Auth::id())->where(function ($q) use ($query) {
                 $q->where('name', 'like', '%'.$query.'%');
             });
+    }
+
+    public static function searchHrd($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('name', 'like', '%'.$query.'%');
     }
 }

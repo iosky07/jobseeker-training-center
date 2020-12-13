@@ -20,21 +20,24 @@
         </div>
 
         <div class="form-group col-span-6 sm:col-span-5">
-            <label for="name">{{__('Kuota')}}</label>
-            <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"
-                   wire:model="interview.quota" required/>
-        </div>
-
-        <div class="form-group col-span-6 sm:col-span-5">
             <label for="name">{{__('Media')}}</label>
             <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"
                    wire:model="interview.media" required/>
         </div>
 
-        <div class="form-group col-span-6 sm:col-span-5">
-            <label for="name">{{__('Keterangan')}}</label>
-            <textarea name="info" id="" class="form-control" wire:model="interview.info" ></textarea>
+        <div class="form-group col-span-6 sm:col-span-5" wire:ignore>
+            <label for="detail">{{__('Detail Info')}}</label>
+            <div class="col-sm-12 col-md-12" >
+                <textarea type="text" input="description" id="summernote" class="form-control summernote" required>
+                    {{$interview['info']}}
+                    </textarea>
+            </div>
         </div>
+
+{{--        <div class="form-group col-span-6 sm:col-span-5">--}}
+{{--            <label for="name">{{__('Keterangan')}}</label>--}}
+{{--            <textarea name="info" id="" class="form-control" wire:model="interview.info" ></textarea>--}}
+{{--        </div>--}}
 
         <div class="form-group col-span-6 sm:col-span-5"></div>
         <button type="submit" id="submit" class="btn btn-primary">Submit</button>
@@ -57,6 +60,27 @@
     </script>
     <script type="text/javascript">
     document.addEventListener('livewire:load', function () {
+        $('#summernote').summernote({
+
+            tabsize: 2,
+            height: 200,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ],
+            callbacks: {
+
+                onChange: function (contents, $editable) {
+                @this.set('interview.info', contents)
+                }
+            }
+
+        })
         // $('.timepicker').timepicker();
         $("#time").on("change.datetimepicker", () => {
             var data = document.getElementById('time').value;
@@ -80,16 +104,8 @@
         @this.set('interview.time', dataa)
         })
     });
-{{--        function Datepicker() {--}}
-{{--            $('#asdasd').datetimepicker({--}}
-{{--                format: 'YYYY-MM-DD H:mm'--}}
-{{--            }).on("dp.change", function (e) {--}}
-{{--            @this.set('pay_date', e.date);--}}
-{{--                console.log('asd')--}}
-{{--            });--}}
-{{--        };--}}
-{{--        window.addEventListener('turbolinks:load', Datepicker);--}}
     </script>
+
 </div>
 
 

@@ -18,11 +18,9 @@
                         Jam
                         @include('components.sort-icon', ['field' => 'time'])
                     </a></th>
-                <th><a wire:click.prevent="sortBy('quota')" role="button" href="#">
-                        Kuota
-                        @include('components.sort-icon', ['field' => 'quota'])
-                    </a></th>
-                <th>Action</th>
+                <th><a>
+                    Action
+                </a></th>
             </tr>
         </x-slot>
         <x-slot name="body">
@@ -32,10 +30,8 @@
                     <td>{{ $interview->tester_name }}</td>
                     <td>{{ $interview->date }}</td>
                     <td>{{ $interview->time }}</td>
-                    <td>{{ $interview->quota }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a role="button" x-on:click.prevent="verifySchedule" class="btn btn-warning">Verifikasi</a>
-                        <a role="button" x-on:click.prevent="deleteItem" class="btn btn-danger">Hapus</a>
+                        <a href="{{ route('admin.interview.show', $interview->id) }}" class="btn btn-icon icon-left btn-primary"><i class="far fa-eye"></i> Lihat</a>
                     </td>
                 </tr>
             @endforeach

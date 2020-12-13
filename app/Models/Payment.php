@@ -27,7 +27,7 @@ class Payment extends Model
 
     public static function search($query)
     {
-        return empty($query) ? static::query()->whereVerification('yes')->whereUserId(Auth::user()->id)
+        return empty($query) ? static::query()->whereVerification('yes')
             : static::whereVerification('yes')->where(function ($q) use ($query) {
                 $q->where('user_name', 'like', '%'.$query.'%')
                     ->orWhere('bank', 'like', '%'.$query.'%');

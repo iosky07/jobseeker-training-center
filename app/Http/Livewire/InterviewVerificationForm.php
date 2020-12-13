@@ -84,6 +84,6 @@ class InterviewVerificationForm extends Component
 
     public function render()
     {
-        return view('livewire.interview-verification-form');
+        return view('livewire.interview-choosen-form');
     }
 }

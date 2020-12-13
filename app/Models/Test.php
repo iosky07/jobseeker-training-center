@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @property integer $id
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $category
  * @property string $created_at
  * @property string $updated_at
- * @property JobseekerTest[] $jobseekerTests
+ * @property Test[] $test
  * @property QuestionDetail[] $questionDetails
  * @property QuestionScore[] $questionScores
  * @property Question[] $questions
@@ -33,9 +34,9 @@ class Test extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function jobseekerTests()
+    public function tests()
     {
-        return $this->hasMany('App\Models\JobseekerTest');
+        return $this->hasMany('App\Models\Test');
     }
 
     /**
@@ -70,10 +71,11 @@ class Test extends Model
 
     public static function searchRegularTest($query)
     {
-        return empty($query) ? static::query()->whereCategory('TKD')
-            : static::whereCategory('TKD')->where(function ($q) use ($query) {
-                $q->where('name', 'like', '%'.$query.'%')
-                    ->orWhere('email', 'like', '%'.$query.'%');
+        return empty($query) ? static::query()->whereCategory('TKD')->whereHas('questionScores')->whereUserId(Auth::id())
+            : static::whereCategory('TKD')->whereHas('questionScores',function ($q) use ($query) {
+                $q->whereUserId(Auth::id());
+//                $q->where('name', 'like', '%'.$query.'%')
+//                    ->orWhere('email', 'like', '%'.$query.'%');
             });
     }
 }

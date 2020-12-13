@@ -35,7 +35,7 @@
         document.addEventListener('livewire:load', function () {
             window.livewire.on('redirect', () => {
                 setTimeout(function () {
-                    window.location.href = "{{route('admin.payment-verification.create')}}"; //will redirect to your blog page (an ex: blog.html)
+                    window.location.href = "{{route('admin.payment-choosen.create')}}"; //will redirect to your blog page (an ex: blog.html)
                 }, 2000); //will call the function after 2 secs.
             });
         });

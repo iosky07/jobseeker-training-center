@@ -8,7 +8,7 @@
 {{--                <div class="col-md-6">--}}
 {{--                    @livewire("chat-form")--}}
 {{--                </div>--}}
-                <div class="col-md-6">
+                <div class="col-md-12">
                     @livewire("chat-list")
                 </div>
             </div>

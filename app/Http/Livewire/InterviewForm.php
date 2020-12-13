@@ -3,7 +3,7 @@
 
 namespace App\Http\Livewire;
 
-
+use Validator;
 use App\Models\Interview;
 use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
@@ -25,8 +25,7 @@ class InterviewForm extends Component
                 'interview.tester_id' => 'required|max:256',
                 'interview.tester_name' => 'required|max:256',
                 'interview.date' => 'required|date',
-                'interview.time' => 'required|time',
-                'interview.quota' => 'required',
+                'interview.time' => 'required',
                 'interview.media' => 'required',
                 'interview.info' => 'required',
             ];
@@ -35,8 +34,7 @@ class InterviewForm extends Component
                 'interview.tester_id' => 'required|max:256',
                 'interview.tester_name' => 'required|max:256',
                 'interview.date' => 'required|date',
-                'interview.time' => 'required|time',
-                'interview.quota' => 'required',
+                'interview.time' => 'required',
                 'interview.media' => 'required',
                 'interview.info' => 'required',
             ];
@@ -48,15 +46,15 @@ class InterviewForm extends Component
     {
         $this->interview['date']='';
         $this->interview['time']='';
+        $this->interview['info']='';
         if (!!$this->dataId) {
             $interview = Interview::findOrFail($this->dataId);
 
-            $this->data = [
+            $this->interview = [
                 "tester_id" => $interview->tester_id,
                 "tester_name" => $interview->tester_name,
                 "date" => $interview->date,
                 "time" => $interview->time,
-                "quota" => $interview->quota,
                 "media" => $interview->media,
                 "info" => $interview->info,
             ];
@@ -78,6 +76,8 @@ class InterviewForm extends Component
         Interview::create($this->interview);
 
         $this->reset('interview');
+
+        $this->interview['info']='';
         $this->emit('swal:alert', [
             'type'    => 'success',
             'title'   => 'Data berhasil masuk',
