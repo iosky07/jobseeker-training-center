@@ -23,7 +23,7 @@
                 <th scope="col">c</th>
                 <th scope="col">d</th>
                 <th scope="col">e</th>
-                <th scope="col">Value</th>
+                <th scope="col">Jawaban Benar</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>

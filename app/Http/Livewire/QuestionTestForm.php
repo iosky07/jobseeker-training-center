@@ -77,7 +77,6 @@ class QuestionTestForm extends Component
             $question_test = QuestionDetail::whereTestId($this->dataId)->firstOrFail();
 //dd($question);
             $this->question_test = [
-                "type" => $question_test->type,
                 "quest" => $question_test->quest,
                 "a" => $question_test->a,
                 "b" => $question_test->b,

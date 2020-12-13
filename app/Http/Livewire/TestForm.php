@@ -62,6 +62,7 @@ class TestForm extends Component
             'timeout' => 3000,
             'icon'=>'success'
             ]);
+        return redirect(route('admin.test.index'));
     }
 
     public function mount ()

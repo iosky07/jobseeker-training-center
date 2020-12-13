@@ -73,7 +73,7 @@ class QuestionDetailForm extends Component
             'timeout' => 3000,
             'icon'=>'success'
         ]);
-        return redirect(route('admin.test.edit', $this->id));
+//        return redirect(route('admin.test.show', compact('id')));
     }
 
     public function mount ()
@@ -89,7 +89,6 @@ class QuestionDetailForm extends Component
             $question = QuestionDetail::findOrFail($this->dataId);
 //            dd($question);
             $this->question = [
-                "type" => $question->type,
                 "quest" => $question->quest,
                 "a" => $question->a,
                 "b" => $question->b,

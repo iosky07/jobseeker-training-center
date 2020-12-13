@@ -10,6 +10,32 @@
     </x-slot>
 
     <div>
+        <div class="card">
+            <div class="card-header bg-whitesmoke" >
+                <h4 class="col-lg-6">List Nomer Rekening</h4>
+            </div>
+            <div class="card-body">
+                <b>
+                    <div class="row">
+                        <div class="col-md-1">BRI</div>
+                        <div class="">:</div>
+                        <div class="col-md-2">034-101-000-XXX</div>
+                        <div class="col-md-2">(A.n Yoski Tanjung)</div>
+                        <div class="w-100" style="margin-bottom: 15px"></div>
+                        <div class="col-md-1">BCA</div>
+                        <div class="">:</div>
+                        <div class="col-md-2">731-025-XXXX</div>
+                        <div class="col-md-2">(A.n Yoski Tanjung)</div>
+                        <div class="w-100" style="margin-bottom: 15px"></div>
+                        <div class="col-md-1">MANDIRI</div>
+                        <div class="">:</div>
+                        <div class="col-md-2">0700-000-899-XXX</div>
+                        <div class="col-md-2">(A.n Yoski Tanjung)</div>
+                        <div class="w-100" style="margin-bottom: 15px"></div>
+                    </div>
+                </b>
+            </div>
+        </div>
         <livewire:payment-form action="create" />
     </div>
 </x-app-layout>

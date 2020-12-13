@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property integer $id
  * @property integer $test_id
- * @property boolean $type
  * @property string $quest
  * @property string $a
  * @property string $b
@@ -32,7 +31,7 @@ class QuestionDetail extends Model
     /**
      * @var array
      */
-    protected $fillable = ['test_id', 'type', 'quest', 'a', 'b', 'c', 'd', 'e', 'value', 'created_at', 'updated_at'];
+    protected $fillable = ['test_id', 'quest', 'a', 'b', 'c', 'd', 'e', 'value', 'created_at', 'updated_at'];
 
 
     /**

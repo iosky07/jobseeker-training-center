@@ -1,7 +1,6 @@
 <div>
     <form wire:submit.prevent="{{$action}}"  x-init="myAlert()">
 
-
         <div class="form-group col-span-6 sm:col-span-5">
             <label for="name">{{__('Pilih Bank')}}</label>
             <select name="bank" id="bank" wire:model.defer="payment.bank" class="form-control">
