@@ -16,37 +16,50 @@ class CreateUser extends Component
     public $action;
     public $button;
 
-    protected function getRules()
-    {
-        if ($this->action=="createUser"){
-            $rules=[
+//    protected function getRules()
+//    {
+//        if ($this->action=="createUser"){
+//            $rules=[
+//                'user.name' => ' required|max:256',
+//                'user.email' => ' required|max:256',
+//                'user.password' => ' required|max:256',
+//                'user.role' => ' required|max:256',
+//                'user.nik' => ' required|numeric|min:16',
+//                'user.domisili' => ' required|max:256',
+//                'user.nomor_hp' => ' required|max:256',
+//                'user.jenis_kelamin' => ' required|max:256',
+//                'user.riwayat_pendidikan' => ' required|max:256',
+////                'user.quotes' => ' required|max:256'
+//            ];
+//        }else{
+//            $rules=[
+//                'user.name' => ' required|max:256',
+//                'user.email' => ' required|max:256',
+//                'user.password' => ' required|max:256',
+//                'user.role' => ' required|max:256',
+//                'user.nik' => ' required|max:256',
+//                'user.domisili' => ' required|max:256',
+//                'user.nomor_hp' => ' required|max:256',
+//                'user.jenis_kelamin' => ' required|max:256',
+//                'user.riwayat_pendidikan' => ' required|max:256',
+////                'user.quotes' => ' required|max:256'
+//            ];
+//        }
+//        return $rules;
+//    }
+    protected $rules=
+        [
                 'user.name' => ' required|max:256',
                 'user.email' => ' required|max:256',
                 'user.password' => ' required|max:256',
                 'user.role' => ' required|max:256',
-                'user.nik' => ' required|max:256',
+                'user.nik' => ' required|numeric|min:16',
                 'user.domisili' => ' required|max:256',
                 'user.nomor_hp' => ' required|max:256',
                 'user.jenis_kelamin' => ' required|max:256',
                 'user.riwayat_pendidikan' => ' required|max:256',
 //                'user.quotes' => ' required|max:256'
             ];
-        }else{
-            $rules=[
-                'user.name' => ' required|max:256',
-                'user.email' => ' required|max:256',
-                'user.password' => ' required|max:256',
-                'user.role' => ' required|max:256',
-                'user.nik' => ' required|max:256',
-                'user.domisili' => ' required|max:256',
-                'user.nomor_hp' => ' required|max:256',
-                'user.jenis_kelamin' => ' required|max:256',
-                'user.riwayat_pendidikan' => ' required|max:256',
-//                'user.quotes' => ' required|max:256'
-            ];
-        }
-        return $rules;
-    }
 
     public function createUser ()
     {
@@ -55,6 +68,7 @@ class CreateUser extends Component
         $this->resetErrorBag();
         $this->validate();
 
+//        $user['jenis_kelamin'] = 'Laki-laki';
         $user=User::create($this->user);
 //        dd($user);
 

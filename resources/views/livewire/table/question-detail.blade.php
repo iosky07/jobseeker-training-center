@@ -2,10 +2,10 @@
     <x-data-table :data="$data" :model="$questions">
         <x-slot name="head">
             <tr>
-                <th><a wire:click.prevent="sortBy('id')" role="button" href="#">
-                    ID
-                    @include('components.sort-icon', ['field' => 'id'])
-                </a></th>
+{{--                <th><a wire:click.prevent="sortBy('id')" role="button" href="#">--}}
+{{--                    ID--}}
+{{--                    @include('components.sort-icon', ['field' => 'id'])--}}
+{{--                </a></th>--}}
                 <th><a wire:click.prevent="sortBy('test_id')" role="button" href="#">
                     ID Tes
                     @include('components.sort-icon', ['field' => 'test_id'])
@@ -28,7 +28,7 @@
         <x-slot name="body">
             @foreach ($questions as $question)
                 <tr x-data="window.__controller.dataTableController({{ $question->id }})">
-                    <td>{{ $question->id }}</td>
+{{--                    <td>{{ $question->id }}</td>--}}
                     <td>{{ $question->test_id }}</td>
                     <td>{{ $question->question }}</td>
                     <td>{{ $question->key }}</td>

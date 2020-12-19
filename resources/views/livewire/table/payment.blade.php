@@ -2,10 +2,10 @@
     <x-data-table :data="$data" :model="$payments">
         <x-slot name="head">
             <tr>
-                <th><a wire:click.prevent="sortBy('id')" role="button" href="#">
-                    ID
-                    @include('components.sort-icon', ['field' => 'id'])
-                </a></th>
+{{--                <th><a wire:click.prevent="sortBy('id')" role="button" href="#">--}}
+{{--                    ID--}}
+{{--                    @include('components.sort-icon', ['field' => 'id'])--}}
+{{--                </a></th>--}}
                 <th><a wire:click.prevent="sortBy('user_id')" role="button" href="#">
                     User ID
                    @include('components.sort-icon', ['field' => 'user_id'])
@@ -32,7 +32,7 @@
         <x-slot name="body">
             @foreach ($payments as $payment)
                 <tr x-data="window.__controller.dataTableController({{ $payment->id }})">
-                    <td>{{ $payment->id }}</td>
+{{--                    <td>{{ $payment->id }}</td>--}}
                     <td>{{ $payment->user_id }}</td>
                     <td>{{ $payment->user_name }}</td>
                     <td>{{ $payment->bank }}</td>
